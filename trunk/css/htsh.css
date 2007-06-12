@@ -108,4 +108,5 @@
 			}
 				#wrapper #shell .result pre {
 					font-size: 10pt;
+					font-family: monaco, 'lucida console', 'courier new', 'courier', monospace;
 				}
