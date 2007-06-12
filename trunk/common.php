@@ -1,4 +1,23 @@
 <?php
+/**
+ * htsh: http shell
+ * Copyright (C) 2007 Adeel Khan <adeel@mathideas.org>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+
 define('ROOT', dirname(__FILE__));
 define('BIN', ROOT . '/bin');
 
@@ -13,5 +32,15 @@ function random($length) {
 		$r .= $chars[rand(0, count($chars))];
 	}
 	return $r;
+}
+
+ini_set('include_path', getcwd() . '/pear:' . ini_get('include_path'));
+
+if (!function_exists('json_encode')) {
+	function json_encode($value) {
+		@require_once('JSON.php');
+		$json = new Services_JSON();
+		return $json->encode($value);
+	}
 }
 ?>
