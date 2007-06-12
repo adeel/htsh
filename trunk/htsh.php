@@ -28,7 +28,7 @@ class htsh {
 			if (file_exists(BIN . "/{$command}/{$command}.php")) {
 				include(BIN . "/{$command}/{$command}.php");
 				$args = array_slice($query_split, 1);
-				$result = call_user_func('htsh_' . $command, $this->arg_filter($args));
+				$result = @call_user_func('htsh_' . $command, $this->arg_filter($args));
 				if (!$result) $result = array('error' => "I can't execute that function.");
 			} else {
 				$result = array('result' => "I don't understand.");
