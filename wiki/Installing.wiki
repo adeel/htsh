@@ -3,7 +3,7 @@
 
 = Requirements =
 
-Your web server must have PHP5 (PHP4 has not been tested, but it might work, probably with a few minor changes). Currently, the only browser supported is Mozilla Firefox 2.0 (it might work on others). This will improve in future releases.
+Your web server must have PHP5 (PHP4 has not been tested, but it might work, probably with a few minor changes) and [http://pear.php.net PEAR]. Currently, the only browser supported is Mozilla Firefox 2.0 (it might work on others). This will improve in future releases.
 
 = Installation =
 
