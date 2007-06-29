@@ -2,7 +2,7 @@
 function htsh_upload($args) {
 	ob_start();
 ?>
-var url = 'bin/upload/modal.php';
+var url = 'bin/upload/modal.php?PHPSESSID=<?php print session_id(); ?>';
 
 $('<div id="modal"></div>').appendTo('body');
 if (typeof $('#modal').openModal != 'function') {

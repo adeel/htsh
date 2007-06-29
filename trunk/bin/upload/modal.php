@@ -26,6 +26,7 @@ if (!empty($_FILES['file'])) {
   <p>Maximum filesize: <?php print ini_get('upload_max_filesize'); ?></p>
   <form action="modal.php" method="post" enctype="multipart/form-data">
    <input type="hidden" name="max_file_size" value="<?php print ini_get('upload_max_filesize'); ?>" />
+   <input type="hidden" name="PHPSESSID" value="<?php print session_id(); ?>" />
    <p><input type="file" name="file" /></p>
    <p><input type="submit" value="Upload" /></p>
   </form>
