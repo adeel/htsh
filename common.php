@@ -34,13 +34,14 @@ function random($length) {
 	return $r;
 }
 
-ini_set('include_path', getcwd() . '/pear:' . ini_get('include_path'));
-
 if (!function_exists('json_encode')) {
 	function json_encode($value) {
-		@require_once('JSON.php');
-		$json = new Services_JSON();
-		return $json->encode($value);
+		@require_once('json/FastJSON.class.php');
+		return FastJSON::encode($value);
 	}
+}
+
+function error($error) {
+	exit(json_encode(array('error' => $error)));
 }
 ?>

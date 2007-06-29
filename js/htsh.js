@@ -17,7 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-var htsh = {
+var htshController = {
 
 	counter : 0,
 
@@ -63,7 +63,7 @@ var htsh = {
 					partial = self.shell.find('input').val();
 					// complete partial query (make sure it's a normal input, not a username/password field)
 					if (self.shell.find('input').parent().parent().attr('class') == 'row') {
-						$.getJSON('ajax.php', {action: 'complete', partial: partial}, function(json) {
+						$.getJSON('complete.php', {partial: partial, PHPSESSID: self.PHPSESSID}, function(json) {
 							// replace partial with complete and restore focus
 							self.shell.find('input').val(json.result).focus();
 						});
@@ -113,11 +113,10 @@ var htsh = {
 
 				// send ajax request
 				$.ajax({
-					url : 'ajax.php',
+					url : 'login.php',
 					type : 'POST',
 					dataType : 'json',
 					data : {
-						action : 'login',
 						username : self.shell.find('#username input').val(),
 						password : self.shell.find('#password input').val()
 					},
@@ -129,6 +128,8 @@ var htsh = {
 							// set document title
 							document.title = j.username + '@' + location.hostname;
 
+							self.PHPSESSID = j.PHPSESSID;
+							
 							// create prompt
 							self.doPrompt(j);
 
@@ -184,15 +185,15 @@ var htsh = {
 			// send ajax request
 			$.ajax({
 
-				url : 'ajax.php',
+				url : 'query.php',
 
 				type : 'POST',
 
 				dataType : 'json',
 
 				data : {
-					action : 'query',
-					query : self.shell.find('div#' + self.counter + ' input').val()
+					query : self.shell.find('div#' + self.counter + ' input').val(),
+					PHPSESSID : self.PHPSESSID
 				},
 
 				success : function(j) {
@@ -256,7 +257,7 @@ var htsh = {
 		this.shell.find('input').attr('size', (this.shell.find('input').val().length + 5)).focus();
 	},
 
-	destruct : function() {}, // ... 
+	destruct : function() {} // ... 
 	
 }
-$(document).ready(function() { htsh.init(); });
+$(document).ready(function() { htshController.init(); });
