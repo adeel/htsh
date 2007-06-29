@@ -5,7 +5,8 @@ function htsh_download($args) {
 			return array('result' => 'Could not open file.');
 		} else {
 			$file = addslashes($args['params'][0]);
-			return array('javascript' => true, 'result' => "window.open('bin/download/download.php?file={$file}');");
+			$sid = session_id();
+			return array('javascript' => true, 'result' => "window.open('bin/download/download.php?file={$file}&PHPSESSID={$sid}');");
 		}
 	} elseif (isset($args['options'][0]) && (($args['options'][0] == '-h') || ($args['options'][0] == '--help'))) {
 		return array('result' => "Usage: download FILE\nSends FILE to your browser.");
