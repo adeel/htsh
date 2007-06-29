@@ -14,6 +14,7 @@ if (!is_readable($filename) || !is_writable($filename)) die('you do not have per
 
 file_put_contents($filename, stripslashes($contents));
 
-header("Location: editor.php?file={$filename}");
+$session_id = session_id();
+header("Location: editor.php?file={$filename}&PHPSESSID={$session_id}");
 exit;
 ?>
