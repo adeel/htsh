@@ -37,7 +37,7 @@ class htsh {
 			$result = array('result' => "I don't understand.");
 		}
 		$result['cwd'] = getcwd();
-		$result['username'] = $_SESSION['htsh']['user']['username'];
+		$result['username'] = @$_SESSION['htsh']['user']['username'];
 		return json_encode($result);
 	}
 	function complete($partial) {
