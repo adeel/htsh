@@ -48,6 +48,7 @@ $(document).ready(function() {
 <h1><?php print $file; ?></h1>
 <form action="save.php" method="post">
 	<input type="hidden" name="file_name" value="<?php print $file; ?>" />
+	<input type="hidden" name="PHPSESSID" value="<?php print session_id(); ?>" />
 	<textarea name="file_contents"><?php print htmlspecialchars(file_get_contents($file)); ?></textarea>
 	<p><input type="submit" value="Save" /></p></form>
 </body>
