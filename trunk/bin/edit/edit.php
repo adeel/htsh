@@ -6,7 +6,7 @@ function htsh_edit($args) {
 		$file = addslashes($file);
 		ob_start();
 ?>
-var url = 'bin/edit/editor.php?file=<?php print $file; ?>';
+var url = 'bin/edit/editor.php?file=<?php print $file; ?>&PHPSESSID=<?php print session_id(); ?>';
 
 $('<div id="modal"></div>').appendTo('body');
 if (typeof $('#modal').openModal != 'function') {

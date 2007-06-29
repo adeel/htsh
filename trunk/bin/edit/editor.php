@@ -1,9 +1,9 @@
 <?php
 	session_start();
-	if (empty($_SESSION['htsh']['user'])) exit;
+	if (empty($_SESSION['htsh']['user'])) die('you are not logged in');
 	chdir($_SESSION['htsh']['cwd']);
 	$file = $_REQUEST['file'];
-	if (!isset($file) || !file_exists($file)) die('error');
+	if (!isset($file) || !file_exists($file)) die('that file does not exist');
 	if (!is_readable($file) || !is_writable($file)) die('you do not have permission to read/write to this file');
 	$languages = array( //map extensions to filetypes
 		'c' => 'c',
@@ -21,7 +21,7 @@
 		'xml' => 'xml'
 	);
 ?><html>
-<head><style type="text/css">
+<head><style type="text/css">
 body {
 	font-family: 'lucida grande', 'lucida sans unicode', 'lucida sans', 'frutiger linotype', sans-serif;
 	text-align: center;
@@ -49,6 +49,6 @@ $(document).ready(function() {
 <form action="save.php" method="post">
 	<input type="hidden" name="file_name" value="<?php print $file; ?>" />
 	<textarea name="file_contents"><?php print htmlspecialchars(file_get_contents($file)); ?></textarea>
-	<p><input type="submit" value="Save" /></p></form>
+	<p><input type="submit" value="Save" /></p></form>
 </body>
 </html>

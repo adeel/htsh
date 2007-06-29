@@ -18,7 +18,7 @@ function htsh_ls($args) {
 	foreach ($files as $file) {
 		$counter++;
 		if (is_dir($file)) {
-			$file .= DIRECTORY_SEPARATOR;
+			$file .= '/';
 			$file = '<span style="color:#cdea89">' . $file . '</span>';
 		} else {
 			$file = '<span style="color:#aabdfd">' . $file . '</span>';
