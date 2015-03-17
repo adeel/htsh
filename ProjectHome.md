@@ -1,0 +1,1 @@
+htsh is an http shell written with php and the jQuery javascript library (making extensive use of AJAX for better responsiveness).
